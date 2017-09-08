@@ -11,30 +11,30 @@ void antchave(string & chave){
     i++,j--;
     }
 }
-void procurarHorizontal (vector <string > &vtr1 ,string & chave,size_t  lin) {
+void procurarHorizontal (vector <string > &vect_funcion ,string & chave,size_t  lin) {
     for (size_t  i = 0; i < lin; ++i){
-        size_t  posicao = vtr1[i].find(chave);     
+        size_t  posicao = vect_funcion[i].find(chave);     
         for (size_t j = posicao; j < chave.length()+posicao; j++){
-            vtr1[i][j] -= 32;
+            vect_funcion[i][j] -= 32;
             
         }
 
     }
 
 }
-void procurarVertical (vector <string > &vtr1 ,string & chave,size_t  lin) {
+void procurarVertical (vector <string > &vect_funcion ,string & chave,size_t  lin) {
     string str_aux;
     char c;
     for (size_t  i = 0; i < lin; ++i){
         for (size_t j = 0; j < lin; ++j){
-            if(vtr1[i][j]==chave[0]&& i+chave.length()<20){
+            if(vect_funcion[i][j]==chave[0]&& i+chave.length()<20){
                 for ( size_t k = 0; k <chave.length() ; ++k){
-                    c=vtr1[i+k][j];
+                    c=vect_funcion[i+k][j];
                     str_aux.push_back(c);
                 }
                 if(str_aux==chave){
                     for (size_t k =0 ; k < chave.length(); ++k){
-                        vtr1[i+k][j] -= 32 ;
+                        vect_funcion[i+k][j] -= 32 ;
                     }
                 
                 }          
@@ -45,24 +45,24 @@ void procurarVertical (vector <string > &vtr1 ,string & chave,size_t  lin) {
     }
 
 }
-void procurarDiagonal(vector <string > &vtr1 ,string & chave,size_t  lin){
+void procurarDiagonal(vector <string > &vect_funcion ,string & chave,size_t  lin){
     string str_aux;
     char c;
     int q;
     for (size_t  i = 0; i < lin; ++i){
         for (size_t j = 0; j < lin; ++j){
-            if(vtr1[i][j]==chave[0] && i+chave.length()<20 && j+chave.length()<20  && j-chave.length()>=0 && i-chave.length()>=0){
+            if(vect_funcion[i][j]==chave[0] && i+chave.length()<20 && j+chave.length()<20  && j-chave.length()>=0 && i-chave.length()>=0){
                 for(q = 0 ; q<4 ; q++){                     
                     str_aux.erase();
                     if(q==0){
                         for (size_t x = 0; x < chave.length(); ++x){
-                                c=vtr1[i+x][j+x];
+                                c=vect_funcion[i+x][j+x];
                                 str_aux.push_back(c);
                             }
                         }
                         if(str_aux==chave){
                             for (size_t x = 0 ; x < chave.length(); ++x){
-                                    vtr1[i+x][j+x] -= 32 ;
+                                    vect_funcion[i+x][j+x] -= 32 ;
                             }
                         }
                         
@@ -70,12 +70,12 @@ void procurarDiagonal(vector <string > &vtr1 ,string & chave,size_t  lin){
                     str_aux.erase();
                     if(q==1){
                         for (size_t x = 0; x < chave.length(); ++x){
-                                c=vtr1[i+x][j-x];
+                                c=vect_funcion[i+x][j-x];
                                 str_aux.push_back(c);
                         }
                         if(str_aux==chave){
                             for (size_t x = 0 ; x < chave.length(); ++x){
-                                    vtr1[i+x][j-x] -= 32 ;
+                                    vect_funcion[i+x][j-x] -= 32 ;
                                 
                             }
                         }    
@@ -83,24 +83,24 @@ void procurarDiagonal(vector <string > &vtr1 ,string & chave,size_t  lin){
                     str_aux.erase();
                     if(q==2){
                         for (size_t x = 0; x < chave.length(); ++x){
-                                c=vtr1[i-x][j-x];
+                                c=vect_funcion[i-x][j-x];
                                 str_aux.push_back(c);
                         }
                         if(str_aux==chave){
                             for (size_t x = 0 ; x < chave.length(); ++x){
-                                    vtr1[i-x][j-x] -= 32 ;
+                                    vect_funcion[i-x][j-x] -= 32 ;
                             }
                         }
                     }
                     str_aux.erase();
                     if(q==3){
                         for (size_t x = 0; x < chave.length(); ++x){
-                                c=vtr1[i-x][j+x];
+                                c=vect_funcion[i-x][j+x];
                                 str_aux.push_back(c);
                         }
                         if(str_aux==chave){
                             for (size_t x = 0 ; x < chave.length(); ++x){
-                                    vtr1[i-x][j+x] -= 32 ;
+                                    vect_funcion[i-x][j+x] -= 32 ;
                             }
                         }
                     q++; 
@@ -110,12 +110,12 @@ void procurarDiagonal(vector <string > &vtr1 ,string & chave,size_t  lin){
         }
     } 
 }
-void procurarGeral(vector <string > &vtr1 ,string & chave,size_t  lin){
-        procurarHorizontal(vtr1,chave,lin);
-        procurarVertical(vtr1,chave,lin);
-        procurarDiagonal(vtr1,chave,lin);
+void procurarGeral(vector <string > &vect_funcion ,string & chave,size_t  lin){
+        procurarHorizontal(vect_funcion,chave,lin);
+        procurarVertical(vect_funcion,chave,lin);
+        procurarDiagonal(vect_funcion,chave,lin);
         antchave(chave);
-        procurarHorizontal(vtr1,chave,lin);
-        procurarVertical(vtr1,chave,lin);
-        procurarDiagonal(vtr1,chave,lin);
+        procurarHorizontal(vect_funcion,chave,lin);
+        procurarVertical(vect_funcion,chave,lin);
+        procurarDiagonal(vect_funcion,chave,lin);
 }

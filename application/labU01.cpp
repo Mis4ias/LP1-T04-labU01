@@ -7,24 +7,26 @@ using namespace std;
 
 int main(){ 
 	size_t  lin=20;
-    string chave,lixo;
-    vector<string> vtr1;
-    vtr1.resize(lin); 
+    string chave,str;
+    vector<string> vect_str;
+    vect_str.resize(lin); 
     
    for (size_t  i = 0; i < lin; ++i){
-    		getline (cin,lixo);
-            vtr1[i]=lixo;
+    		getline (cin,str);
+            vect_str[i]=str;
    }
 
     
     getline(cin,chave,'\n');
     while(chave != ""){
-        procurarGeral(vtr1,chave,lin);
+        procurarGeral(vect_str,chave,lin);
         getline(cin,chave,'\n');
     }
+    
     for (size_t i = 0; i <lin ; ++i){
-        cout <<vtr1[i]<< endl; 
+        cout <<vect_str[i]<< endl; 
     }
+    
     return 0;
 }	
 
