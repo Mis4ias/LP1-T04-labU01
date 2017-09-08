@@ -8,5 +8,7 @@ using namespace std;
 void antchave(string & chave);
 void procurarHorizontal (vector <string > &vtr1 ,string & chave,size_t  lin);
 void procurarVertical (vector <string > &vtr1 ,string & chave,size_t  lin);
+void procurarDiagonal(vector <string > &vtr1 ,string & chave,size_t  lin);
 void procurarGeral(vector <string > &vtr1 ,string & chave,size_t  lin);
+
 #endif
